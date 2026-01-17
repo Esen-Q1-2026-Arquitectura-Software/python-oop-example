@@ -14,6 +14,7 @@ class Client:
         self.monthly_salary = monthly_salary
         self.months = months
         self.loan_threshold = loan_threshold
+        # Tarea: dependency injection
         self.yearly_salary = self.get_yearly_salary()
         self.loan_approved = self.get_loan_approval()
 
