@@ -5,17 +5,16 @@ def main():
     print("Hello from python-oop-example!")
     print()
 
-    client = Client(1, "Alice", 30, 250.0)
-    client.show_info()
+    clients = [
+        Client(1, "Alice", 30, 250.0, 12, 3500.0),
+        Client(2, "Bob", 25, 300.0, 12, 3500.0),
+        Client(3, "Ted", 27, 200.0, 12, 3500.0),
+        Client(4, "Kimberly", 32, 600.0, 12, 3500.0),
+        Client(5, "Susie", 23, 150.0, 12, 3500.0),
+    ]
 
-    client = Client(2, "Bob", 25, 300.0)
-    client.show_info()
-
-    client = Client(3, "Ted", 27, 200.0)
-    client.show_info()
-
-    client = Client(4, "Kimberly", 32, 600.0)
-    client.show_info()
+    for client in clients:
+        print(client)
 
 
 if __name__ == "__main__":

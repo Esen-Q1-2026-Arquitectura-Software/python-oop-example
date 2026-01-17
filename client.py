@@ -1,19 +1,29 @@
 class Client:
-    def __init__(self, id: int, name: str, age: int, monthly_salary: float):
+    def __init__(
+        self,
+        id: int,
+        name: str,
+        age: int,
+        monthly_salary: float,
+        months: int,
+        loan_threshold: float,
+    ):
         self.id = id
         self.name = name
         self.age = age
         self.monthly_salary = monthly_salary
+        self.months = months
+        self.loan_threshold = loan_threshold
         self.yearly_salary = self.get_yearly_salary()
         self.loan_approved = self.get_loan_approval()
 
     def get_yearly_salary(self) -> float:
-        return self.monthly_salary * 12
+        return self.monthly_salary * self.months
 
     def get_loan_approval(self) -> bool:
-        return self.yearly_salary > 3500
+        return self.yearly_salary > self.loan_threshold
 
-    def show_info(self):
+    def __str__(self):
         display = f"""
         Client
         id: {self.id}
@@ -24,4 +34,4 @@ class Client:
         Loan Approved: {self.loan_approved}
         -------------------------------
         """
-        print(display)
+        return display
