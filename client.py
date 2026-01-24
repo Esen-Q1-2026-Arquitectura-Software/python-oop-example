@@ -1,3 +1,11 @@
+from typing import Protocol
+
+
+class AccountingService(Protocol):
+    def calculate_yearly_salary(self, monthly_salary: float) -> float: ...
+    def evaluate_loan_eligibility(self, yearly_salary: float) -> bool: ...
+
+
 class Client:
     def __init__(
         self,
@@ -5,24 +13,22 @@ class Client:
         name: str,
         age: int,
         monthly_salary: float,
-        months: int,
-        loan_threshold: float,
+        accounting_service: AccountingService,
     ):
         self.id = id
         self.name = name
         self.age = age
         self.monthly_salary = monthly_salary
-        self.months = months
-        self.loan_threshold = loan_threshold
-        # Tarea: dependency injection
-        self.yearly_salary = self.get_yearly_salary()
-        self.loan_approved = self.get_loan_approval()
+        self._accounting = accounting_service
 
-    def get_yearly_salary(self) -> float:
-        return self.monthly_salary * self.months
+    def calculate_yearly_salary(self) -> float:
+        """Business logic in methods, not constructor"""
+        return self._accounting.calculate_yearly_salary(self.monthly_salary)
 
-    def get_loan_approval(self) -> bool:
-        return self.yearly_salary > self.loan_threshold
+    def check_loan_eligibility(self) -> bool:
+        """Business logic in methods, not constructor"""
+        yearly = self.calculate_yearly_salary()
+        return self._accounting.evaluate_loan_eligibility(yearly)
 
     def __str__(self):
         display = f"""
@@ -31,8 +37,8 @@ class Client:
         Name: {self.name}
         Age: {self.age}
         Monthly Salary: ${self.monthly_salary}
-        Yearly Salary: ${self.yearly_salary}
-        Loan Approved: {self.loan_approved}
+        Yearly Salary: ${self.calculate_yearly_salary()}
+        Loan Approved: {self.check_loan_eligibility()}
         -------------------------------
         """
         return display
