@@ -1,20 +1,28 @@
-from client import Client
-
-
 def main():
     print("Hello from python-oop-example!")
     print()
 
-    clients = [
-        Client(1, "Alice", 30, 250.0, 12, 3500.0),
-        Client(2, "Bob", 25, 300.0, 12, 3500.0),
-        Client(3, "Ted", 27, 200.0, 12, 3500.0),
-        Client(4, "Kimberly", 32, 600.0, 12, 3500.0),
-        Client(5, "Susie", 23, 150.0, 12, 3500.0),
-    ]
+    client001_name = "Alice"
+    client001_age = 30
+    client001_monthly_salary = 250.0
+    print(f"Client Name: {client001_name}")
+    print(f"Client Age: {client001_age}")
+    print(f"Client Monthly Salary: ${client001_monthly_salary}")
+    print(f"Client Yearly Salary: ${client001_monthly_salary * 12}")
+    print(f"loan approved: {client001_monthly_salary * 12 > 3500}")
+    print("-------------------------------")
+    print()
 
-    for client in clients:
-        print(client)
+    client002_name = "Bob"
+    client002_age = 25
+    client002_monthly_salary = 300.0
+    print(f"Client Name: {client002_name}")
+    print(f"Client Age: {client002_age}")
+    print(f"Client Monthly Salary: ${client002_monthly_salary}")
+    print(f"Client Yearly Salary: ${client002_monthly_salary * 12}")
+    print(f"loan approved: {client002_monthly_salary * 12 > 3500}")
+    print("-------------------------------")
+    print()
 
 
 if __name__ == "__main__":
